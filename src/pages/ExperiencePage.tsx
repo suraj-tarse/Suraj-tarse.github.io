@@ -138,7 +138,7 @@ const ExperiencePage = () => {
                       <div className="mt-5 pt-4 border-t border-border">
                         {/* Tabs */}
                         <div className="flex gap-2 mb-4 overflow-x-auto pb-1">
-                          {["overview", "technical", "soft skills"].map((t) => (
+                          {["about", "overview", "technical", "soft skills"].map((t) => (
                             <button
                               key={t}
                               onClick={(e) => {
