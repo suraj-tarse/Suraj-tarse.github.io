@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
-import { Briefcase, ChevronRight } from "lucide-react";
+import { Briefcase, ChevronRight, ArrowUpRight } from "lucide-react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const experiences = [
   {
@@ -40,24 +41,32 @@ const experiences = [
 const ExperienceCard = () => {
   const [activeIdx, setActiveIdx] = useState(0);
   const active = experiences[activeIdx];
+  const navigate = useNavigate();
 
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay: 0.4 }}
-      className="bento-card col-span-1 md:col-span-2 bg-gradient-to-br from-gold/5 to-card"
+      className="bento-card col-span-1 md:col-span-2 bg-gradient-to-br from-gold/5 to-card cursor-pointer group"
+      onClick={() => navigate("/experience")}
     >
-      <div className="flex items-center gap-2 mb-4">
-        <Briefcase size={18} className="text-gold" />
-        <h2 className="font-semibold text-lg">Experience</h2>
+      <div className="flex items-center justify-between mb-4">
+        <div className="flex items-center gap-2">
+          <Briefcase size={18} className="text-gold" />
+          <h2 className="font-semibold text-lg">Experience</h2>
+        </div>
+        <ArrowUpRight size={16} className="text-muted-foreground group-hover:text-gold transition-colors" />
       </div>
 
       <div className="flex gap-2 mb-4 overflow-x-auto pb-1">
         {experiences.map((exp, i) => (
           <button
             key={exp.company}
-            onClick={() => setActiveIdx(i)}
+            onClick={(e) => {
+              e.stopPropagation();
+              setActiveIdx(i);
+            }}
             className={`px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap transition-all ${
               i === activeIdx
                 ? "bg-gold/20 text-gold border border-gold/30"
@@ -83,6 +92,9 @@ const ExperienceCard = () => {
           ))}
         </ul>
       </motion.div>
+      <p className="text-xs text-muted-foreground mt-3 group-hover:text-gold/70 transition-colors">
+        Click for detailed breakdown →
+      </p>
     </motion.div>
   );
 };
