@@ -64,7 +64,7 @@ const ExperiencePage = () => {
   const [expandedId, setExpandedId] = useState<string | null>("propburg");
   const [activeTab, setActiveTab] = useState<Record<string, string>>({});
 
-  const getTab = (id: string) => activeTab[id] || "overview";
+  const getTab = (id: string) => activeTab[id] || "about";
 
   return (
     <div className="min-h-screen bg-background p-4 md:p-8">
