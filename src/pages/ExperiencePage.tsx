@@ -158,6 +158,12 @@ const ExperiencePage = () => {
 
                         {/* Tab content */}
                         <motion.div key={tab} initial={{ opacity: 0, y: 5 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.2 }}>
+                          {tab === "about" && (
+                            <div className="space-y-3">
+                              <p className="text-sm text-muted-foreground leading-relaxed">{exp.description}</p>
+                            </div>
+                          )}
+
                           {tab === "overview" && (
                             <ul className="space-y-3">
                               {exp.highlights.map((h, i) => (
