@@ -11,6 +11,7 @@ const experiences = [
     period: "Mar 2025 – Aug 2025",
     location: "Mumbai, India",
     color: "gold",
+    description: "PropBurg is a real estate consulting and advisory firm based in Mumbai that helps clients navigate complex property markets. As a Project & Business Analyst, I was embedded in a client-facing team where I worked across 10+ consulting engagements spanning market entry strategy, competitive positioning, and operational transformation. My role involved end-to-end project delivery — from initial stakeholder discovery and data gathering through analysis, insight generation, and final presentation to senior leadership. I served as the analytical backbone of the team, building the models and dashboards that drove strategic decisions worth millions in investment.",
     highlights: [
       "Joined a client-facing team to tackle complex business challenges across 10+ engagements, combining stakeholder interviews, market research, and data analysis to uncover root causes and generate breakthrough strategic recommendations for senior leadership.",
       "Built Excel models and Power BI dashboards to support data-driven decision making, enabling client teams to evaluate strategic options, track performance, and drive bottom-line impact across multiple markets.",
@@ -26,6 +27,7 @@ const experiences = [
     period: "Mar 2024 – Jun 2024",
     location: "Mumbai, India",
     color: "accent",
+    description: "Better Floors is a flooring solutions company operating across India's residential and commercial markets. As a Business Strategy Intern, I worked directly with the leadership team to analyze the company's competitive landscape and identify growth opportunities. My day-to-day involved deep-dive analysis of business processes, market trends, and financial data. I managed multiple parallel workstreams across 7 stakeholders — producing financial summaries, business reports, and strategic planning documents. My analytical work directly influenced Annual Operating Plan (AOP) decisions, including market expansion priorities and resource allocation strategies.",
     highlights: [
       "Collaborated with cross-functional teams to analyze business processes, identify competitive opportunities, and develop actionable plans that enabled leadership to grow market share and improve operational performance.",
       "Managed multiple workstreams simultaneously across 7 stakeholders, producing structured written deliverables — financial summaries, business reports, and planning documents — that communicated complex findings clearly across all seniority levels.",
@@ -41,6 +43,7 @@ const experiences = [
     period: "Mar 2023 – Jun 2023",
     location: "Mumbai, India",
     color: "primary",
+    description: "Adhiraj Construction is a prominent real estate development firm in Mumbai known for premium residential projects. As a Business Development Intern, I supported the company's client acquisition and pipeline management efforts. Working in a fast-paced commercial environment, I was responsible for managing communication workflows, tracking leads through the sales funnel, and monitoring team performance against quarterly targets. This role taught me the foundations of business development — from prospecting and relationship building to pipeline analytics and strategic target-setting. I consistently took ownership of tasks from start to completion, building a reputation for reliability and initiative.",
     highlights: [
       "Supported client engagement and business development workstreams, managing pipelines and communications while tracking team performance against strategic targets in a fast-paced environment.",
       "Initiated and owned tasks independently from start to completion, demonstrating strong organizational capability and time management under shifting priorities.",
@@ -61,7 +64,7 @@ const ExperiencePage = () => {
   const [expandedId, setExpandedId] = useState<string | null>("propburg");
   const [activeTab, setActiveTab] = useState<Record<string, string>>({});
 
-  const getTab = (id: string) => activeTab[id] || "overview";
+  const getTab = (id: string) => activeTab[id] || "about";
 
   return (
     <div className="min-h-screen bg-background p-4 md:p-8">
@@ -135,7 +138,7 @@ const ExperiencePage = () => {
                       <div className="mt-5 pt-4 border-t border-border">
                         {/* Tabs */}
                         <div className="flex gap-2 mb-4 overflow-x-auto pb-1">
-                          {["overview", "technical", "soft skills"].map((t) => (
+                          {["about", "overview", "technical", "soft skills"].map((t) => (
                             <button
                               key={t}
                               onClick={(e) => {
@@ -155,6 +158,12 @@ const ExperiencePage = () => {
 
                         {/* Tab content */}
                         <motion.div key={tab} initial={{ opacity: 0, y: 5 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.2 }}>
+                          {tab === "about" && (
+                            <div className="space-y-3">
+                              <p className="text-sm text-muted-foreground leading-relaxed">{exp.description}</p>
+                            </div>
+                          )}
+
                           {tab === "overview" && (
                             <ul className="space-y-3">
                               {exp.highlights.map((h, i) => (
