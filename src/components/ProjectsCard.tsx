@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { FolderOpen, ArrowUpRight } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const projects = [
   {
@@ -15,25 +16,28 @@ const projects = [
 ];
 
 const ProjectsCard = () => {
+  const navigate = useNavigate();
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay: 0.45 }}
-      className="bento-card bg-gradient-to-br from-primary/5 to-card"
+      className="bento-card bg-gradient-to-br from-primary/5 to-card cursor-pointer group"
+      onClick={() => navigate("/projects")}
     >
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
           <FolderOpen size={18} className="text-primary" />
           <h2 className="font-semibold text-lg">Projects</h2>
         </div>
-        <ArrowUpRight size={16} className="text-muted-foreground" />
+        <ArrowUpRight size={16} className="text-muted-foreground group-hover:text-primary transition-colors" />
       </div>
 
       <div className="space-y-4">
         {projects.map((p) => (
-          <div key={p.title} className="group cursor-pointer">
-            <p className="font-medium text-sm group-hover:text-primary transition-colors">{p.title}</p>
+          <div key={p.title} className="group/item">
+            <p className="font-medium text-sm group-hover/item:text-primary transition-colors">{p.title}</p>
             <p className="text-xs text-muted-foreground mt-1">{p.description}</p>
             <div className="flex gap-1.5 mt-2">
               {p.tags.map((t) => (
@@ -45,6 +49,9 @@ const ProjectsCard = () => {
           </div>
         ))}
       </div>
+      <p className="text-xs text-muted-foreground mt-3 group-hover:text-primary/70 transition-colors">
+        Click for detailed breakdown →
+      </p>
     </motion.div>
   );
 };
