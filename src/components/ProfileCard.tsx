@@ -1,7 +1,9 @@
 import { motion } from "framer-motion";
 import { User } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const ProfileCard = () => {
+  const navigate = useNavigate();
   const tags = ["Business Analyst", "Project Manager", "Strategy Consultant"];
 
   return (
@@ -9,7 +11,8 @@ const ProfileCard = () => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay: 0.1 }}
-      className="bento-card flex flex-col justify-between"
+      className="bento-card flex flex-col justify-between cursor-pointer hover:border-primary/30 transition-colors"
+      onClick={() => navigate("/profile")}
     >
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">

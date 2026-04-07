@@ -9,6 +9,7 @@ import SkillsPage from "./pages/SkillsPage.tsx";
 import EducationPage from "./pages/EducationPage.tsx";
 import ExperiencePage from "./pages/ExperiencePage.tsx";
 import ProjectsPage from "./pages/ProjectsPage.tsx";
+import ProfilePage from "./pages/ProfilePage.tsx";
 
 const queryClient = new QueryClient();
 
